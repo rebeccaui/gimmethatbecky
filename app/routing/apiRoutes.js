@@ -11,7 +11,7 @@ module.exports = function(app) {
 
     //Adding a new friend
     app.post("/api/friends", function(request, response) {
-        res.json("Starting the post.");
+        response.json("Starting the post.");
             var userInput = request.body;
             var userScores = userInput.scores;
             var matchName; 
@@ -32,7 +32,7 @@ module.exports = function(app) {
                 }
             }
             friendsArray.push(userInput);
-            res.json({matchName: matchName, matchImage: matchImage});
+            response.json({matchName: matchName, matchImage: matchImage});
 
     });
 };
