@@ -29,13 +29,11 @@ module.exports = function(app) {
                     matchImage = friendsArray[i].photo;
                     referenceScore = difference;
                 }
+                friendsArray.push(userInput);
+                response.json({matchName: matchName, matchImage: matchImage});
+                console.log("A match was found!");
+                console.log(matchName, matchImage);
             }
-            friendsArray.push(userInput);
-            response.json({matchName: matchName, matchImage: matchImage});
-            console.log("A match was found!");
-            console.log(matchName, matchImage);
-
-
     });
 };
         
