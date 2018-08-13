@@ -5,84 +5,51 @@ var path = require("path");
 //Exporting API Routes
 module.exports = function(app) {
     //API get functions to retrieve all JSON data from /data/friends.js
-    app.get("/api/friends", function(request, response) {
-        response.json(friendsArray);
+    app.get("/api/friends", function(req, res) {
+        res.json(friendsArray);
     });
 
     //Adding a new friend
-    app.post("/api/friends", function(request, response) {
-        response.json("Starting the post.");
-            var userInput = request.body;
-            var userScores = userInput.scores;
-            var matchName; 
-            var matchImage;
-            var referenceScore = 100;
+    app.post("/api/friends", function(req, res) {
+        //Handling client request and isolating the user's scores for comparison
+        var userInput = req.body;
+        var userScores = userInput.scores;
+        //The difference between the user's scores and the scores of each person in the array.
+        var difference;
+        //
+        var bestMatch = {
+            name: "",
+            photo: "",
+            referenceScore: 100
+        };
 
-             //Loops through all friends in the friendsArray
-             for (i = 0; i < friendsArray.length; i++) {
-                var difference = 0;
-                for (var j = 0; j < userScores.length; j++) {
-                difference += Math.abs(parseInt(friendsArray[i].scores[j]) - parseInt(userScores[j]));
-                }
-                if (difference < referenceScore) {
-                    matchName = friendsArray[i].name;
-                    matchImage = friendsArray[i].photo;
-                    referenceScore = difference;
-                }
-                friendsArray.push(userInput);
-                response.json({matchName: matchName, matchImage: matchImage});
-                console.log("A match was found!");
-                console.log(matchName, matchImage);
+        //Loops through all friends in the friendsArray
+        for (i = 0; i < friendsArray.length; i++) {
+            //Isolate a friend for conditional statements
+            var currentFriend = friendsArray[i];
+            difference = 0;
+            //Then loop through the scores of each friend in the friendsArray
+            for (var j = 0; j < currentFriend.scores.length; j++) {
+                //Isolate the two sets of scores that need comparing: the user and any friend from the array
+                var currentUserScore = userScores[j];
+                var currentFriendScore = currentFriend.scores[j];
+                //Find the difference between each of the scores 
+                //and add them up to produce a total difference between the two candidates
+                difference += Math.abs(parseInt(currentUserScore) - parseInt(currentFriendScore));
             }
+            //If the sum of the differences between the user and a friend
+            //is less than the differences of the current bestMatch 
+            //Set the bestMatch as that currentFriend
+            if (difference <= bestMatch.referenceScore) {
+                bestMatch.name = currentFriend.name;
+                bestMatch.photo = currentFriend.photo;
+                bestMatch.referenceScore = difference;
+            }
+        }
+        //Push the user's data to the friendsArray to store it after a match has already been found
+        friendsArray.push(userInput);
+        //Return the bestMatch and display their name and photo to the user
+        res.json(bestMatch);
+        console.log("A match was found!");
     });
 };
-        
-/*
-            //Loops through all friends in the friendsArray
-            for (i = 0; i < friendsArray.length; i++) {
-                if (userInput.name !== friendsArray[i].name) {
-                    //And loop through the scores of the friends
-                    for (var j = 0; j < userScores.length; j++) {
-                        res.json("Starting the j loop.");
-                        //Find the difference between the scores of all the friends in the friendsArray and the new user
-                        difference[j] = Math.abs(parseInt(friendsArray["scores[]"][j]) - parseInt(friendsArray[i]["scores[]"][j]));
-                        referenceScore += difference[j];
-                    }
-                    //Push those values to the scoresArray
-                    //scoresArray.push(difference);
-                    //Friends with the highest compatibility rates are the bestMatch
-                    if (difference < referenceScore) {
-                        res.json("Choosing the best match.");
-                        bestMatch = friends[i];
-                    }
-
-                }
-            }
-
-            if (bestMatch) {
-                res.json(bestMatch);
-            } else {
-                res.json("No clear matches yet! Try again soon!");
-            }
-
-    });
-
-
-            //Loop through the scoresArray of all those differences 
-            //and find the best match with the smallest difference
-            for (var i = 0; i < scoresArray.length; i++) {
-                if (scoresArray[i] <= scoresArray[bestMatch]) {
-                    bestMatch = 1;
-                }
-            }
-            
-            matchName = friendsArray[bestMatch]; //friendsArray[i].name;
-            res.json(matchName);
-            //matchImage = friendsArray[i].photo;
-
-            //Add a new user
-            friendsArray.push(userInput);
-            //Find a match
-            res.json({status: 'OK', matchName: matchName, matchImage: matchImage});
-            console.log("A match was found!");
-*/
