@@ -1,5 +1,5 @@
-#Gimme That Becky! 
-##A FriendFinder App
+# Gimme That Becky! 
+## A FriendFinder App
 Authored by: Rebecca Wieberdink
 
 This app uses Nose.js and Express.js to help users find a compatible love interest!
