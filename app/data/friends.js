@@ -1,11 +1,11 @@
 var friendsArray = [
     {
         "name": "Allison",
-        "photo": "/images/woman1.jpg",
+        "photo": "/images/woman5.jpg",
         "scores": ["1", "2", "3", "5", "5", "5", "4", "3", "2", "1"]
     },{
         "name": "Becky",
-        "photo": "/images/woman5.jpg",
+        "photo": "/images/woman4.jpg",
         "scores": ["1", "2", "3", "4", "5", "5", "3", "2", "2", "1"]
     },{
         "name": "Cate",
@@ -13,7 +13,7 @@ var friendsArray = [
         "scores": ["4", "5", "4", "1", "1", "1", "2", "3", "5", "3"]
     },{
         "name": "Andrew",
-        "photo": "/images/male2.jpg",
+        "photo": "/images/male3.jpg",
         "scores": ["5", "5", "3", "2", "3", "3", "2", "4", "2", "4"]
     },{
         "name": "Robert",

@@ -16,7 +16,6 @@ module.exports = function(app) {
             var userScores = userInput.scores;
             var matchName; 
             var matchImage;
-            //var bestMatch = 0;
             var referenceScore = 100;
 
              //Loops through all friends in the friendsArray
@@ -33,6 +32,9 @@ module.exports = function(app) {
             }
             friendsArray.push(userInput);
             response.json({matchName: matchName, matchImage: matchImage});
+            console.log("A match was found!");
+            console.log(matchName, matchImage);
+
 
     });
 };
