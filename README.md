@@ -10,7 +10,7 @@ The app then takes the difference of every score of the user and every score of 
 
 The biggest challenge in creating this app was synchronozing the .json() function within several embedded for loops. Using the function too soon within the .post() could result in the user being added to the friends array and subsequently paired up with themselves. This app is useful to anyone looking to understand how to build apps with Express.js, set up a server, and use strategic file pathing! 
 
-![Gimme That Becky](/app/public/screenshot.png)
+![Gimme That Becky](./app/public/screenshot.png)
 
 
 ## In order to run this program...
