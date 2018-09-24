@@ -1,6 +1,6 @@
 var friendsArray = [
     {
-        "name": "Allison",
+        "name": "Maxine",
         "photo": "https://images.pexels.com/photos/38554/girl-people-landscape-sun-38554.jpeg?cs=srgb&dl=person-woman-model-38554.jpg&fm=jpg",
         "scores": ["1", "2", "3", "5", "5", "5", "4", "3", "2", "1"]
     },{
@@ -16,7 +16,7 @@ var friendsArray = [
         "photo": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&h=350",
         "scores": ["5", "5", "3", "2", "3", "3", "2", "4", "2", "4"]
     },{
-        "name": "Robert",
+        "name": "Ed",
         "photo": "https://www.law.virginia.edu/system/files/admissions/ben-cabranes-270.jpg",
         "scores": ["2", "2", "2", "2", "2", "2", "2", "2", "2", "2"]
     },{
